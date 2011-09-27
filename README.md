@@ -15,7 +15,7 @@ without reinventing the wheel.
 
 Conductor is aiming at being highly performant and scalable with capabilities built in, from the
 beginning, to run without hitting the database any more than it needs to.  Workflows are cached
-allowing them to be loaded by name easily form in memory key-value stores.  Presistence of state
+allowing them to be loaded by name easily from in memory key-value stores.  Presistence of state
 is optional for workflows that do not need to be resumed.  Workflow state storage has a pluggable
 storage backend allowing it, too, to be persisted to a NoSQL or in memory data store.
 
@@ -28,7 +28,7 @@ storage backend allowing it, too, to be persisted to a NoSQL or in memory data s
 
 ### 1. Workflow ###
 
-A workflow is a process.  These processes have different steps, generically refered to as
+A workflow is a process with a beginning and an end.  These processes have different steps, generically refered to as
 activities, that a particular workflow moves through.
 
 #### Storage ####
