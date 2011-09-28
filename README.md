@@ -78,6 +78,19 @@ When an activity is completed (always starting with the `start` activity), its n
 added to the `completedActivities` array in the WorkflowState object and each of its
 specified outputs is activated making them eligible for processing.
 
+Workflow activities are designed to handle branching conditions.  In this way, the final context
+is used to trigger one or more new activities. For example, upon completion an activity could trigger two more activities, one to create a log entry and another to continue the movement of 
+data through the workflow.  The final goal is to use conditional logic (if, and, or) to support branching.  In this way the results of one activity create different paths through the workflow.     
+
+## Scalability ##
+
+Conductor is designed to be a fully integrated Drupal module and rely on nothing more than Drupal and dependent contributed Drupal modules to function.  However it is being designed with high load scenarios in mind and as such queuing of data and the use alternate storage engines for short term data handling.
+
+## Architecture ##
+
+Conductor relies on object-oriented data structures.  Workflows, activities, and activity states are all stored as objects and each has its own necessary properties and methods.
+Activity and activity state objects are contained within the workflow object.  This allows activities and activity states to poll the workflow for other activities and activity states.  This design also allows for the entire workflow to be stored while waiting for needed conditions for an activity to be met.  Essentially a started workflow has a list of necessary tasks as designated at its instantiation.  The analogy is to consider sending a spouse to the market with a grocery list.  After leaving the house it is not possible to alter the list until the spouse returns home.  A that time a new list or an adjusted list can be issued and the spouse can be sent to the market again (analogous to restarting a workflow with new or altered activities).  This design ensures data integrity.
+
 ## Updating Conductor ##
 
 One question that needs to be answered for Conductor to be a viable option as the center
