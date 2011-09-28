@@ -13,9 +13,9 @@ without reinventing the wheel.
 
 ## Performance ##
 
-Conductor is aiming at being highly performant and scalable with capabilities built in, from the
-beginning, to run without hitting the database any more than it needs to.  Workflows are cached
-allowing them to be loaded by name easily from in memory key-value stores.  Presistence of state
+Conductor aims to be highly performant and scalable with capabilities built in, from the
+beginning, to run without hitting the database any more than is absolutely required.  Workflows are cached
+allowing them to be loaded by name easily from in memory key-value stores.  Persistence of state
 is optional for workflows that do not need to be resumed.  Workflow state storage has a pluggable
 storage backend allowing it, too, to be persisted to a NoSQL or in memory data store.
 
@@ -28,7 +28,7 @@ storage backend allowing it, too, to be persisted to a NoSQL or in memory data s
 
 ### 1. Workflow ###
 
-A workflow is a process with a beginning and an end.  These processes have different steps, generically refered to as
+A workflow is a process with a beginning and an end.  These processes have different steps, generically refereed to as
 activities, that a particular workflow moves through.
 
 #### Storage ####
@@ -39,7 +39,7 @@ in both code and the database the version in the database is used but may be rev
 to the version specified in code via the user interface.
 
 Conductor workflows want to cache themselves.  Workflows in the database will be cached
-so that it can be retrieved from memory on sites using [memcached](http://drupal.org/project/memcache)
+so that they can be retrieved from memory on sites using [memcached](http://drupal.org/project/memcache)
 without making additional database calls for processing.
 
 ### 2. Activity ###
@@ -62,7 +62,7 @@ Workflow state represents a single instance of a workflow.
 
 Workflow state is stored using another ctools plugin and so storage can be swapped out.
 The activities on a workflow are stored with the workflow state in their configuration
-at the time that workflow is stored.  This is important because without this otherwise
+at the time that workflow is stored.  This is important because, without this,
 changing the workflow while a particular instance is in the process of completion could
 result in stranded workflow items with inconsistent state.
 
@@ -81,7 +81,7 @@ specified outputs is activated making them eligible for processing.
 ## Updating Conductor ##
 
 One question that needs to be answered for Conductor to be a viable option as the center
-point for a site's workflow managnement, is how we are going to manage updating to a new
+point for a site's workflow management, is how we are going to manage updating to a new
 version of workflow with processes in the midst of processing.  At the time of writing the
 API is highly unstable and we can't make any promises about whether changes will break
 existing workflows.
